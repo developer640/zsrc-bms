@@ -10,14 +10,14 @@
           </FormItem>
         </Col>
         <Col span="12">
-          <FormItem label="负债（笔/张数）" prop="overDeptNum" class="info_title">
+          <FormItem label="负债（笔/张数）" :label-width="120" prop="overDeptNum" class="info_title">
             <InputNumber style='width:100%' v-model="formData.overDeptNum" :min="0" :precision="2" :active-change="false" @on-change="handleNumChange" :readonly="this.operate==='view'"></InputNumber>
           </FormItem>
         </Col>
       </Row>
       <Row :gutter="20">
         <Col span="12">
-          <FormItem label="负债金额合计" prop="overDeptBal" class="info_title">
+          <FormItem label="负债余额" prop="overDeptBal" class="info_title">
             <div>
               <InputNumber style='width:80%' v-model="formData.overDeptBal" :min="0" :precision="2" :active-change="false" @on-change="handleBalChange" :readonly="this.operate==='view'"></InputNumber>
               <span style="margin-left: 10px">元</span>
@@ -72,7 +72,7 @@ export default {
     const validateDeptBal = (rule, value, callback) => {
       if (!value || value === 0) {
         this.$Message.warning({
-          content: '负债金额合计必需大于0 ！',
+          content: '负债余额必需大于0 ！',
           duration: 5
         })
         callback(new Error(''))

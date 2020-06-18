@@ -187,8 +187,7 @@ export default {
       this.file_uploading = false
       this.load_data = false
     },
-    handleUploadErr (err) {
-      console.log(err)
+    handleUploadErr () {
       this.$Message.error({
         content: '上传文件失败！',
         duration: 3
@@ -206,7 +205,7 @@ export default {
   },
   mounted () {
     this.base_url = (process.env.NODE_ENV === 'production' ? config.baseUrl.pro : config.baseUrl.dev)
-    this.template_url = (process.env.NODE_ENV === 'production' ? config.baseUrl.pro_static : config.baseUrl.dev_static) + 'template/严重违规信息导入模板.xlsx'
+    this.template_url = (process.env.NODE_ENV === 'production' ? config.baseUrl.pro_static : config.baseUrl.dev_static) + 'template/违规违纪信息导入模板.xlsx'
     this.file_upload_url = this.base_url + config.fileUploadUrl.infoImport + '/outlinelayinfo'
     this.formData.date_value = getStartToLastDate('year')
     this.dataYear = getFormatDate('yyyy-MM-dd')

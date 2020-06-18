@@ -5,7 +5,7 @@ export const col_discipline = [
     align: 'center'
   },
   {
-    title: '批次号（员工严重违规信息）',
+    title: '批次号（员工违规违纪信息）',
     key: 'batNum',
     tooltip: 'true'
   },
@@ -34,11 +34,11 @@ export const col_discipline = [
     key: 'errorRecord',
     tooltip: 'true'
   },
-  // {
-  //   title: '导入结果',
-  //   key: 'impStatusText',
-  //   tooltip: 'true'
-  // },
+  {
+    title: '导入结果',
+    key: 'impRemark',
+    tooltip: 'true'
+  },
   {
     title: '失败清单',
     slot: 'action',

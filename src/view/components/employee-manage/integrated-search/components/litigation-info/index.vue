@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { getStartToLastDate } from '@/libs/j-tools.js'
+// import { getStartToLastDate } from '@/libs/j-tools.js'
 import { getEmpLitigationList } from '@/api/emp-manage/emp-search'
 import { col_litigation } from './common.js'
 export default {
@@ -27,11 +27,13 @@ export default {
     handleRefreshData () {
       this.refreshing = true
 
-      let _date = getStartToLastDate('year', new Date(`${this.main_data.year}-01-01`))
+      // let _date = getStartToLastDate('year', new Date(`${this.main_data.year}-01-01`))
       const condition = {
         employeeNo: this.main_data.employeeNo,
-        wadeDateStart: _date[0],
-        wadeDateEnd: _date[1]
+        orderBy: 'wade_date',
+        orderType: 'desc'
+        // wadeDateStart: _date[0],
+        // wadeDateEnd: _date[1]
       }
 
       getEmpLitigationList(condition).then(res => {

@@ -37,7 +37,7 @@
                   <Col span="12">
                     <Card shadow style="height: 282px">
                       <p slot="title">
-                        负债前10
+                        负债前10(不含按揭)
                       </p>
                       <!-- <a href="#" slot="extra">
                         <Icon type="ios-loop-strong"></Icon>
@@ -68,7 +68,7 @@
             </Row>
       </Col>
       <Col span="8">
-        <ToDo style="margin-bottom: 10px" todo_title="待办事项"></ToDo>
+        <ToDo style="margin-bottom: 10px" todo_title="待办事项" :flag="1"></ToDo>
         <Card shadow>
           <div style="height: 544px;text-align: center">
             <!-- <img v-if="showZsMap" :src="zsMap" style="height: 544px;width: 100%;" alt=""> -->

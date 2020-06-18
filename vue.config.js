@@ -11,7 +11,7 @@ const resolve = dir => {
 // 如果您的应用程序部署在子路径中，则需要在这指定子路径
 // 例如：https://www.foobar.com/bms/
 // 需要将它改为'/bms/'
-// iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
+// ViewUI-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
 const BASE_URL = process.env.NODE_ENV === 'production'
   ? '/'
   : '/'
@@ -41,5 +41,19 @@ module.exports = {
     port: 9001, // 端口号
     host: '0.0.0.0',
     //proxy: 'localhost:3000'
+  },
+  // 警告 webpack 的性能提示
+  configureWebpack : {
+    performance: {
+      hints:'warning',
+      // 入口起点的最大体积 整数类型（以字节为单位）
+      maxEntrypointSize: 50000000,
+      // 生成文件的最大体积 整数类型（以字节为单位 300k）
+      maxAssetSize: 30000000,
+      // 只给出 js 文件的性能提示
+      assetFilter: function(assetFilename) {
+        return assetFilename.endsWith('.js');
+      }
+    }
   }
 }

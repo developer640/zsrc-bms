@@ -1,21 +1,21 @@
 <template>
   <Form ref="loginForm" :model="form" :rules="rules" @keydown.enter.native="handleSubmit">
     <FormItem prop="userName">
-      <Input v-model="form.userName" placeholder="请输入用户名">
+      <Input v-model="form.userName" :disabled="this.disableLogin" placeholder="请输入用户名">
         <span slot="prepend">
           <Icon :size="16" type="ios-person"></Icon>
         </span>
       </Input>
     </FormItem>
     <FormItem prop="password">
-      <Input type="password" v-model="form.password" placeholder="请输入密码">
+      <Input type="password" v-model="form.password" :disabled="this.disableLogin" placeholder="请输入密码">
         <span slot="prepend">
           <Icon :size="14" type="md-lock"></Icon>
         </span>
       </Input>
     </FormItem>
     <FormItem>
-      <Button @click="handleSubmit" type="primary" :loading="logining" long>登录</Button>
+      <Button @click="handleSubmit" :disabled="this.disableLogin" type="primary" :loading="logining" long>登录</Button>
     </FormItem>
   </Form>
 </template>
@@ -44,6 +44,7 @@ export default {
   },
   data () {
     return {
+      disableLogin: false,
       logining: false,
       form: {
         userName: '',
@@ -61,6 +62,8 @@ export default {
   },
   methods: {
     handleSubmit () {
+      if (this.logining || this.disableLogin) return
+
       this.logining = true
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
@@ -69,6 +72,15 @@ export default {
             password: encryptStr(this.form.password)
           })
         }
+      })
+    }
+  },
+  mounted () {
+    if (!!window.ActiveXObject || 'ActiveXObject' in window) { // 禁用IE登录
+      this.disableLogin = true
+      this.$Message.warning({
+        content: '温馨提示：本系统不支持IE浏览器，请使用谷歌浏览！可通过 http://125.0.184.100 下载',
+        duration: 20
       })
     }
   },

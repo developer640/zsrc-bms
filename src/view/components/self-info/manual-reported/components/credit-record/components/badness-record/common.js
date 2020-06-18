@@ -10,7 +10,7 @@ export const col_badness = [
     tooltip: true
   },
   {
-    title: '是否超过90天逾期（信用卡）',
+    title: '是否存在超90天以上逾期',
     key: 'dyaOverdue1Text',
     tooltip: true
   },
@@ -20,7 +20,7 @@ export const col_badness = [
     tooltip: true
   },
   {
-    title: '是否超90天以上逾期（贷款）',
+    title: '是否存在超90天以上逾期',
     key: 'dyaOverdue2Text',
     tooltip: true
   },

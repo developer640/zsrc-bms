@@ -1,9 +1,13 @@
 import axios from '@/libs/api.request'
+import qs from 'qs'
 
 export const getListData = (url, params) => {
   return axios.request({
     url,
     params,
+    paramsSerializer: function (params) {
+      return qs.stringify(params, { arrayFormat: 'repeat' })
+    },
     method: 'get'
   })
 }
@@ -51,6 +55,15 @@ export const deleteDataByBatch = (url, data) => {
 
 export const getSelectOptionData = (params) => {
   let url = '/menum/multi'
+  return axios.request({
+    url,
+    params,
+    method: 'get'
+  })
+}
+
+export const getSingleSelectOptionData = (params) => {
+  let url = '/menums'
   return axios.request({
     url,
     params,
@@ -134,6 +147,30 @@ export const getUserOperationAuth = (formData) => {
   })
 }
 
+export const verifyToken = (data) => {
+  let url = '/verify'
+  return axios.request({
+    url,
+    data,
+    method: 'post'
+  })
+}
+
+// /**
+//  * @description 下载上传文件
+//  * @param {*} formData
+//  * @returns
+//  */
+// export const getDownloadFile = (formData) => {
+//   let url = `/uploadfile/download/${formData.id}`
+//   const params = {}
+//   return axios.request({
+//     url,
+//     params,
+//     method: 'get'
+//   })
+// }
+
 export default {
   getListData,
   getOneRowData,
@@ -147,5 +184,7 @@ export default {
   changeLoginPwd,
   resetLoginPwd,
   getEmployeesDetail,
-  getUserOperationAuth
+  getUserOperationAuth,
+  verifyToken
+  // getDownloadFile
 }
